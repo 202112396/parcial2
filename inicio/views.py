@@ -26,12 +26,16 @@ def create_user(request):
     if request.method == 'POST':
         try:
             message = "¡Creaste tu usuario con éxito!"
-            return render(request, 'login.html', {'message': message})
             New_usr.save()
+            return render(request, 'login.html', {'message': message})
+
         except IntegrityError:
             message = "Este usuario ya existe"
             return render(request, 'register.html', {'message': message})            
     return render(request, 'register.html')
+
+def recover(request):
+    return render(request, 'forgot.html')
 
     #New_usr.save()
     #messages.success(request,'¡Creación exitosa! Ya puedes ingresar')
